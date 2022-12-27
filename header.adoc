@@ -76,12 +76,12 @@ Other potential unicode characters might be found in the following links:
 - https://www.compart.com/en/unicode/bidiclass/ES
 ////
 
-[[fig:trace-simple]]
+[[fig:trace-topo-single]]
 .Simplest trace, 2 trace components (Encoder and Sink/Bridge)
 ["ditaa",shadows=false, separation=false, fontsize: 14]
 ....
 +----------------+
-| Hart           |
+| Single Hart    |
 |         +----------+    +---------+     +------------+ 
 |         |  Trace   |    |  Trace  |     | Trace Sink |
 |         | Ingress =====>| Encoder |---->|    or      |
@@ -91,71 +91,71 @@ Other potential unicode characters might be found in the following links:
 +----------------+
 ....
 
-[[fig:trace-funnel]]
+[[fig:trace-topo-funnel]]
 .Three harts, 3*1+2=5 trace components (three Encoders, Funnel and Sink/Bridge)
 ["ditaa",shadows=false, separation=false, fontsize: 14]
 ....
-+-----------+      +---------+
-| Hart with |      |  Trace  |
-| Ingress   |=====>| Encoder |---+
-|  Port     |      |         |   |
-+-----------+      +---------+   |
-                                 |
-+-----------+      +---------+   |   +--------+     +-------------+ 
-| Hart with |      |  Trace  |   --->| Trace  |     | Trace Sink  |
-| Ingress   |=====>| Encoder |------>| Funnel |====>|    or       |
-|  Port     |      |         |   --->|        |     | ATB Bridge  |
-+-----------+      +---------+   |   +--------+     +-------------+
-                                 |
-+-----------+      +---------+   |
-| Hart with |      |  Trace  |   |
-| Ingress   |=====>| Encoder |---+
-|  Port     |      |         |
-+-----------+      +---------+
++-----------+   +---------+
+| Hart with |   |  Trace  |
+| Ingress   |==>| Encoder |---+
+|  Port     |   |         |   |
++-----------+   +---------+   |
+                              |
++-----------+   +---------+   |   +--------+     +-------------+ 
+| Hart with |   |  Trace  |   +-->| Trace  |     | Trace Sink  |
+| Ingress   |==>| Encoder |------>| Funnel |---->|    or       |
+|  Port     |   |         |   +-->|        |     | ATB Bridge  |
++-----------+   +---------+   |   +--------+     +-------------+
+                              |
++-----------+   +---------+   |
+| Hart with |   |  Trace  |   |
+| Ingress   |==>| Encoder |---+
+|  Port     |   |         |
++-----------+   +---------+
 ....
 
-[[fig:trace-clusters]]
-.Two three-hart clusters with top-level funnel, 2*4+2=10 trace components  
+[[fig:trace-topo-clusters]]
+.Two three-hart clusters with top-level funnel  
 ["ditaa",shadows=false, separation=false, fontsize: 14]
 ....
 +-------------------------+
 | 3 Harts with 3 Encoders |
-|  and own Funnel         |-----+
-| (as shown above)        |     | 
-+-------------------------+     |
-                                |   +--------+     +-------------+ 
-                                +-->| Trace  |     | Trace Sink  |
-                                    | Funnel |====>|    or       |
-                                +-->|        |     | ATB Bridge  |
-                                |   +--------+     +-------------+
-+-------------------------+     |
-| 3 Harts with 3 Encoders |     |
-|  and own Funnel         |-----+
-| (as shown above)        | 
+|   and local Funnel      |---+
+|       (see above)       |   | 
++-------------------------+   |
+                              |   +--------+     +-------------+ 
+                              +-->| Trace  |     | Trace Sink  |
+                                  | Funnel |---->|    or       |
+                              +-->| (top)  |     | ATB Bridge  |
+                              |   +--------+     +-------------+
++-------------------------+   |
+| 3 Harts with 3 Encoders |   | 
+|   and local Funnel      |---+
+|       (see above)       |
 +-------------------------+
 ....
 
-[[fig:trace-mixed]]
+[[fig:trace-topo-mixed]]
 .Three-hart cluster plus extra hart with own RAM Sink (in SRAM mode)
 ["ditaa",shadows=false, separation=false, fontsize: 14]
 ....
 +-------------------------+
 | 3 Harts with 3 Encoders |
-|  and own Funnel         |-----+
-| (as shown above)        |     | 
-+-------------------------+     |
-+-----------+     +---------+   |   +--------+     +-------------+ 
-| Hart with |     |  Trace  |   --->| Trace  |     | Trace Sink  |
-| Ingress   |====>| Encoder |------>| Funnel |====>|    or       |
-|  Port     |     |         |--+    |        |     | ATB Bridge  |
-+-----------+     +---------+  |    +--------+     +-------------+
-                               |
-                               v
-                        +-------------+ 
-                        | Trace RAM   |
-                        | (in SRAM    |
-                        | mode)       |
-                        +-------------+ 
+|     and local Funnel    |---+
+|       (see above)       |   | 
++-------------------------+   |
+                              |
++-----------+   +---------+   |   +--------+     +-------------+ 
+| Hart with |   |  Trace  |   +-->| Trace  |     | Trace Sink  |
+| Ingress   |==>| Encoder |------>| Funnel |---->|    or       |
+|  Port     |   |         |---+   | (top)  |     | ATB Bridge  |
++-----------+   +---------+   |   +--------+     +-------------+
+                              |
+                              v
+                      +----------------+ 
+                      | Trace RAM Sink |
+                      | (in SRAM mode) |
+                      +----------------+ 
 ....
 
 ////
