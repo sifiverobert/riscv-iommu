@@ -57,12 +57,57 @@ https://creativecommons.org/licenses/by/4.0/.
 
 Copyright 2022 by RISC-V International.
 
-[preface]
-include::contributors.adoc[]
+////
+TAKEN AS-IS from iommu_intro.adoc
+Please in ditaa figures don't use the minus key '-' in your keyboard when
+typing text (like 'non-privileged' in the figure below).
+'-' is a special character that is used by ditaa to draw lines, not text.
+Instead use a different unicode character that looks similar.
+The figure below uses the unicode character with code U+2212 instead of the '-'
+character of your keyboard (which has the unicode code U+002B).
+Note that in your editor both probably look the same, but when rendered by
+ditaa/asciidoc the '-' from your keyboard is used to draw a line, while the
+alternative looks as a minus symbol.
+If you don't know how to type an unicode character in your editor you might
+simply copy the '−' character in the 'non−privileged' word from the drawing
+below.
+Other potential unicode characters might be found in the following links:
+- https://www.compart.com/en/unicode/category/Pd
+- https://www.compart.com/en/unicode/bidiclass/ES
+////
+[[fig:device-isolation]]
+.Device isolation in non-virtualized OS
+["ditaa",shadows=false, separation=false, fontsize: 16]
+....
++----------------+ +--------------+
+| non−privileged | |  privileged  |
+|      memory    | |    memory    |
+|                | |              |
+|       ^        | |              |
++-------|--------+ +--------------+
+        |
++-------|-------------+
+|       |       IOMMU |
+| +------------+      |
+| |   device   |      |
+| | S−stage PT |      |
+| +------------+      |
+|       ^             |
++-------|-------------+
+        |
+   +--------+
+   | Device |
+   +--------+
+....
 
-include::iommu_intro.adoc[]
-include::iommu_data_structures.adoc[]
-include::iommu_in_memory_queues.adoc[]
+////
+
+//[preface]
+//include::contributors.adoc[]
+
+//include::iommu_intro.adoc[]
+//include::iommu_data_structures.adoc[]
+//include::iommu_in_memory_queues.adoc[]
 include::iommu_debug.adoc[]
 include::iommu_registers.adoc[]
 include::iommu_sw_guidelines.adoc[]
@@ -70,3 +115,5 @@ include::iommu_hw_guidelines.adoc[]
 //the index must precede the bibliography
 //include::index.adoc[]
 include::bibliography.adoc[]
+
+////
