@@ -79,25 +79,18 @@ Other potential unicode characters might be found in the following links:
 .Device isolation in non-virtualized OS
 ["ditaa",shadows=false, separation=false, fontsize: 16]
 ....
-+----------------+ +--------------+
-| non−privileged | |  privileged  |
-|      memory    | |    memory    |
-|                | |              |
-|       ^        | |              |
-+-------|--------+ +--------------+
-        |
-+-------|-------------+
-|       |       IOMMU |
-| +------------+      |
-| |   device   |      |
-| | S−stage PT |      |
-| +------------+      |
-|       ^             |
-+-------|-------------+
-        |
-   +--------+
-   | Device |
-   +--------+
+
+`Simplest trace (single hart to single sink)`
+
++----------------+     
+| Hart           |
+|         +----------|    +---------+ 
+|         |  Trace   |    | Trace   | 
+|         | Ingress ----->| Encoder | 
+|         |  Port    |    |         |
+|         +----------|    +---------+
+|                |
++----------------+
 ....
 
 ////
