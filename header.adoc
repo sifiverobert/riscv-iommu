@@ -39,24 +39,6 @@ endif::[]
 = RISC-V IOMMU Specification Document
 IOMMU Task Group
 
-// Preamble
-[WARNING]
-.This document is in the link:http://riscv.org/spec-state[Development state]
-====
-Assume everything can change. This draft specification will change before 
-being accepted as standard, so implementations made to this draft 
-specification will likely not conform to the future standard.
-====
-
-[preface]
-== Copyright and license information
-This specification is licensed under the Creative Commons 
-Attribution 4.0 International License (CC-BY 4.0). The full 
-license text is available at
-https://creativecommons.org/licenses/by/4.0/.
-
-Copyright 2022 by RISC-V International.
-
 ////
 TAKEN AS-IS from iommu_intro.adoc
 Please in ditaa figures don't use the minus key '-' in your keyboard when
@@ -77,7 +59,7 @@ Other potential unicode characters might be found in the following links:
 ////
 
 [[fig:trace-topo-single]]
-.Simplest trace, 2 trace components (Encoder and Sink/Bridge)
+.Simplest trace: Single Hart, Trace Encoder and Trace Sink/Bridge
 ["ditaa",shadows=false, separation=false, fontsize: 14]
 ....
 +----------------+
@@ -91,8 +73,8 @@ Other potential unicode characters might be found in the following links:
 +----------------+
 ....
 
-[[fig:trace-topo-funnel]]
-.Three harts, 3*1+2=5 trace components (three Encoders, Funnel and Sink/Bridge)
+[[fig:trace-topo-multi]]
+.Multi-hart trace: Three harts, three Encoders, single Funnel and single Sink/Bridge
 ["ditaa",shadows=false, separation=false, fontsize: 14]
 ....
 +-----------+   +---------+
@@ -115,7 +97,7 @@ Other potential unicode characters might be found in the following links:
 ....
 
 [[fig:trace-topo-clusters]]
-.Two three-hart clusters with top-level funnel  
+.Multi-cluster trace: two three-hart clusters with top-level Funnel and Sink/Bridge  
 ["ditaa",shadows=false, separation=false, fontsize: 14]
 ....
 +-------------------------+
@@ -136,7 +118,7 @@ Other potential unicode characters might be found in the following links:
 ....
 
 [[fig:trace-topo-mixed]]
-.Three-hart cluster plus extra hart with own RAM Sink (in SRAM mode)
+.Local RAM Sink: Three-hart cluster plus extra hart with own RAM Sink (in SRAM mode)
 ["ditaa",shadows=false, separation=false, fontsize: 14]
 ....
 +-------------------------+
@@ -157,6 +139,24 @@ Other potential unicode characters might be found in the following links:
                       | (in SRAM mode) |
                       +----------------+ 
 ....
+
+// Preamble
+[WARNING]
+.This document is in the link:http://riscv.org/spec-state[Development state]
+====
+Assume everything can change. This draft specification will change before 
+being accepted as standard, so implementations made to this draft 
+specification will likely not conform to the future standard.
+====
+
+[preface]
+== Copyright and license information
+This specification is licensed under the Creative Commons 
+Attribution 4.0 International License (CC-BY 4.0). The full 
+license text is available at
+https://creativecommons.org/licenses/by/4.0/.
+
+Copyright 2022 by RISC-V International.
 
 ////
 
